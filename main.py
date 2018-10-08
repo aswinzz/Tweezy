@@ -14,5 +14,5 @@ from similarity import rank_similarity
 dataset = pd.read_csv('text_emotion.csv')
 dataset = dataset.iloc[0:20,3].values
 
-print(rank_url(dataset))
-print(rank_similarity(dataset))
+print("URL RANKING : ",rank_url(dataset))
+print("SIMILARITY RANKING : ",rank_similarity(dataset))
