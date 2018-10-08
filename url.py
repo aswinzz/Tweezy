@@ -17,14 +17,28 @@ def fetch_url(text):
     urls = re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', text)
     return urls
 
-def url_ranking(urls):
+def url_ranking(urls,counter=0,total=0):
+    if(len(urls)==0):
+        return [counter,total]
+    for url in urls:
+        if(bs4.BeautifulSoup(urlopen("http://data.alexa.com/data?cli=10&dat=s&url="+ url).read(), "xml").find("REACH")):
+            rank=bs4.BeautifulSoup(urlopen("http://data.alexa.com/data?cli=10&dat=s&url="+ url).read(), "xml").find("REACH")['RANK']
+            print(rank)
+            if(int(rank)<200000):
+                counter=counter+1
+            total=total+1
+    return [counter,total]
+
+def rank_url(dataset):
     counter=0
     total=0
-    for url in urls:
-        rank=bs4.BeautifulSoup(urlopen("http://data.alexa.com/data?cli=10&dat=s&url="+ urls[0]).read(), "xml").find("REACH")['RANK']
-        print(rank)
-        if(int(rank)<200000):
-            counter=counter+1
-        total=total+1
-    URL_RANK=(counter/total)*10
+    if(len(dataset)==0):
+        return 0
+    for data in dataset:
+        urls=fetch_url(data)
+        # print(urls)
+        [counter,total]=url_ranking(urls,counter,total)
+    if(total==0):
+        return 0
+    URL_RANK=(float(counter)/total)*10
     return URL_RANK

@@ -8,15 +8,11 @@ from collections import Counter
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from url import url_ranking,fetch_url
-from similarity import cosine_sim
+from url import rank_url
+from similarity import rank_similarity
 
 dataset = pd.read_csv('text_emotion.csv')
-str1="AI is our friend and it has been friendly"
-str2="AI and humans have always been friendly"
-print(cosine_sim(str1,str2))
+dataset = dataset.iloc[0:20,3].values
 
-text="asdkad;lad https://geeksforgeeks.org"
-urls=fetch_url(text)
-print(urls)
-print(url_ranking(urls))
+print(rank_url(dataset))
+print(rank_similarity(dataset))
