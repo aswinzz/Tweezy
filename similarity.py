@@ -29,11 +29,9 @@ def text_to_vector(text):
      return Counter(words)
 
 def cosine_sim(str1,str2):
-    text1 = 'This is a foo bar sentence .'
-    text2 = 'This sentence is similar to a foo bar sentence .'
 
-    vector1 = text_to_vector(text1)
-    vector2 = text_to_vector(text2)
+    vector1 = text_to_vector(str1)
+    vector2 = text_to_vector(str2)
 
     cosine = get_cosine(vector1, vector2)
 
