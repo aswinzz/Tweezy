@@ -45,10 +45,34 @@ def rank_similarity(dataset):
     total=0
     for i in range(0,len(dataset)):
         total=total+1
+        hitinCluster = 0
         for j in range(i-3,i+3):
             if(j>0 and j<len(dataset)):
-                for k in range(i-3,i+3):
+                for k in range(j+1,i+4):
                     if(j!=k and k>0 and k<len(dataset)):
-                        counter=counter+cosine_sim(dataset[j],dataset[k])
+                        if(cosine_sim(dataset[j],dataset[k])):
+                            counter = counter+1
+                            hitinCluster = 1
+                            break
+            if(hitinCluster):
+                break
+                
     similarity_rank=(float(counter)/total)*10
     return similarity_rank
+
+# def rank_similarity(dataset):
+#     counter=0
+#     total=0
+#     for i in range(0,len(dataset)):
+#         total=total+1
+#         for j in range(i-3,i+3):
+#             if(j>0 and j<len(dataset)):
+#                 for k in range(i-3,i+3):
+#                     if(j!=k and k>0 and k<len(dataset)):
+#                         counter=counter+cosine_sim(dataset[j],dataset[k])
+#                         if(cosine_sim(dataset[j],dataset[k])):
+#                             print("yes : "+str(j)+" : "+str(k))
+#     print(counter)
+#     print(total)
+#     similarity_rank=(float(counter)/total)*10
+#     return similarity_rank
