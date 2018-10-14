@@ -43,7 +43,7 @@ def cosine_sim(str1,str2):
 def rank_similarity(dataset):
     counter=0
     total=0
-    for i in range(0,len(dataset)):
+    for i in range(0,len(dataset)-3):
         total=total+1
         hitinCluster = 0
         for j in range(i-3,i+3):
