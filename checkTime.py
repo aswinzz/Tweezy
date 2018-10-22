@@ -8,14 +8,14 @@ from pyshorteners import Shortener
 from url import fetch_url
 
 def findTimeDiff(dataset,pos1,pos2):
-	t1 = dataset[pos1]
-	t2 = dataset[pos2]
+	t1 = str(dataset[pos1])
+	t2 = str(dataset[pos2])
 	t1 = t1.split(" ")
 	t2 = t2.split(" ")
-	if((t1[5]==t2[5]) and (t1[1]==t2[1]) and (t1[2]==t2[2])):
-		t1 = t1[3].split(":")
-		t2 = t2[3].split(":")
-		if((int(t1[0])*3600+int(t1[1])*60+int(t1[2]))-(int(t1[0])*3600+int(t1[1])*60+int(t1[2])) < 120):
+	if(t1[0]==t2[0]):
+		t1 = t1[1].split(":")
+		t2 = t2[1].split(":")
+		if((int(t1[0])*3600+int(t1[1])*60+int(t1[2]))-(int(t2[0])*3600+int(t2[1])*60+int(t2[2])) < 120):
 			return 1
 		else:
 			return 0
@@ -35,6 +35,7 @@ def rank_time(dataset):
 
 	rank = (float(hits)/cluster)*10
 	return rank
+
 
 
 
