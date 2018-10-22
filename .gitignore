@@ -1,8 +1,2 @@
 
-# dotenv environment variables file
-.env
 
-venv/
-
-*.pyc
-__pycache__/
