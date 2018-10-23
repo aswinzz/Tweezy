@@ -11,7 +11,7 @@ import pandas as pd
 def KNN():
     # Importing the dataset
     dataset = pd.read_csv('dataset_gen.csv')
-    X = dataset.iloc[:, [1,2,3,4]].values
+    X = dataset.iloc[:, [0,1,2,3,4]].values
     y = dataset.iloc[:, 6].values
 
     # Splitting the dataset into the Training set and Test set
@@ -42,7 +42,7 @@ def KNN():
 def NaiveBayesClassifier():
     # Importing the dataset
     dataset = pd.read_csv('dataset_gen.csv')
-    X = dataset.iloc[:, [1,2,3,4]].values
+    X = dataset.iloc[:, [0,1,2,3,4]].values
     y = dataset.iloc[:, 6].values
 
     # Splitting the dataset into the Training set and Test set
@@ -72,7 +72,7 @@ def NaiveBayesClassifier():
 def SVM():
     # Importing the dataset
     dataset = pd.read_csv('dataset_gen.csv')
-    X = dataset.iloc[:, [1,2,3,4]].values
+    X = dataset.iloc[:, [0,1,2,3,4]].values
     y = dataset.iloc[:, 6].values
 
     # Splitting the dataset into the Training set and Test set
@@ -102,7 +102,7 @@ def SVM():
 def DecisionTree():
     # Importing the dataset
     dataset = pd.read_csv('dataset_gen.csv')
-    X = dataset.iloc[:, [1,2,3,4]].values
+    X = dataset.iloc[:, [0,1,2,3,4]].values
     y = dataset.iloc[:, 6].values
 
     # Splitting the dataset into the Training set and Test set
@@ -132,7 +132,7 @@ def DecisionTree():
 def RandomForest():
     # Importing the dataset
     dataset = pd.read_csv('dataset_gen.csv')
-    X = dataset.iloc[:, [1,2,3,4]].values
+    X = dataset.iloc[:, [0,1,2,3,4]].values
     y = dataset.iloc[:, 6].values
 
     # Splitting the dataset into the Training set and Test set
