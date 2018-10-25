@@ -68,6 +68,34 @@ def get_tweets(username):
         print("Error")
         return [],[]
 
+def singleuser(username):
+    [tweet_textList,tweet_timeList] = get_tweets(username)
+    if(len(tweet_textList)!=0 and len(tweet_timeList)!=0):
+        a=rank_time(tweet_timeList)
+        b=rank_similarity(tweet_textList)
+        c=rank_url(tweet_textList)
+        d=rank_wot(tweet_textList)
+        e=checkAdultContent(tweet_textList)
+
+        print("URL RANKING : ",c)
+        print("SIMILARITY RANKING : ",b)
+        print("WOT RANKING : ",d)
+        print("ADULT CONTENT : ",e)
+        print("TIME RANKING : ",a)
+
+        FAL=0
+        if(e!=10):
+            FAL=a*0.15+b*0.25+c*0.3+d*0.3
+        type=0
+        if(FAL>=4 and FAL<=5):
+            type=1
+        if(FAL>5 and FAL<=10):
+            type=2
+
+        return [a,b,c,d,e,FAL,type]
+    else:
+        return ["empty"]
+        
 def analyser():
     dataset = pd.read_csv('Followers.csv')
     usernames = dataset.iloc[1:, [0]].values
