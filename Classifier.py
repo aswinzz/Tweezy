@@ -8,9 +8,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-def KNN():
+def KNN(dataset):
     # Importing the dataset
-    dataset = pd.read_csv('dataset_gen.csv')
+
     X = dataset.iloc[:, [0,1,2,3,4]].values
     y = dataset.iloc[:, 6].values
 
@@ -36,12 +36,11 @@ def KNN():
     from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # print(cm)
+    print(cm)
     return cm
 
-def NaiveBayesClassifier():
+def NaiveBayesClassifier(dataset):
     # Importing the dataset
-    dataset = pd.read_csv('dataset_gen.csv')
     X = dataset.iloc[:, [0,1,2,3,4]].values
     y = dataset.iloc[:, 6].values
 
@@ -67,13 +66,12 @@ def NaiveBayesClassifier():
     from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # print(cm)
+    print(cm)
     return cm
 
 
-def SVM():
+def SVM(dataset):
     # Importing the dataset
-    dataset = pd.read_csv('dataset_gen.csv')
     X = dataset.iloc[:, [0,1,2,3,4]].values
     y = dataset.iloc[:, 6].values
 
@@ -99,13 +97,13 @@ def SVM():
     from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # print(cm)
+    print(cm)
     return cm
 
 
-def DecisionTree():
+def DecisionTree(dataset):
     # Importing the dataset
-    dataset = pd.read_csv('dataset_gen.csv')
+    # dataset = pd.read_csv('dataset_gen.csv')
     X = dataset.iloc[:, [0,1,2,3,4]].values
     y = dataset.iloc[:, 6].values
 
@@ -131,13 +129,13 @@ def DecisionTree():
     from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # print(cm)
+    print(cm)
     return cm
 
 
-def RandomForest():
+def RandomForest(dataset):
     # Importing the dataset
-    dataset = pd.read_csv('dataset_gen.csv')
+    # dataset = pd.read_csv('dataset_gen.csv')
     X = dataset.iloc[:, [0,1,2,3,4]].values
     y = dataset.iloc[:, 6].values
 
@@ -163,12 +161,12 @@ def RandomForest():
     from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # print(cm)
+    print(cm)
     return cm
 
-
-cm=KNN()
-cm=NaiveBayesClassifier()
-cm=DecisionTree()
-cm=RandomForest()
-cm=SVM()
+dataset = pd.read_csv('dataset_gen.csv')
+cm=KNN(dataset)
+cm=NaiveBayesClassifier(dataset)
+cm=DecisionTree(dataset)
+cm=RandomForest(dataset)
+cm=SVM(dataset)
