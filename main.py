@@ -16,7 +16,7 @@ from checkContent import checkAdultContent
 from checkTime import rank_time
 
 import csv
-
+from Classifier import *
 
 KEY="d490ab2486ff4140b3ed73590b9908e1cbcf8933"
 
@@ -68,9 +68,7 @@ def get_tweets(username):
         print("Error")
         return [],[]
 
-if __name__ == '__main__':
-    # Here goes the twitter handle for the user
-    # whose tweets are to be extracted.
+def analyser():
     dataset = pd.read_csv('Followers.csv')
     usernames = dataset.iloc[1:, [0]].values
     lines=[]
@@ -107,3 +105,21 @@ if __name__ == '__main__':
         writer = csv.writer(writeFile)
         writer.writerows(lines)
     writeFile.close()
+
+    cm_knn=KNN()
+    cm_nb=NaiveBayesClassifier()
+    cm_dt=DecisionTree()
+    cm_rf=RandomForest()
+    cm_svm=SVM()
+    print(cm_knn)
+    print(cm_nb)
+    print(cm_dt)
+    print(cm_rf)
+    print(cm_svm)
+
+    return [cm_knn,cm_nb,cm_dt,cm_rf,cm_svm]
+
+if __name__ == '__main__':
+    # Here goes the twitter handle for the user
+    # whose tweets are to be extracted.
+    temp=analyser()
