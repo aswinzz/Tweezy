@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
             print("URL RANKING : ",c)
             print("SIMILARITY RANKING : ",b)
-            print("WOT RANKING : "d,)
+            print("WOT RANKING : ",d)
             print("ADULT CONTENT : ",e)
             print("TIME RANKING : ",a)
 

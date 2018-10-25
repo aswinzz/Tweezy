@@ -17,7 +17,7 @@ def rank_wot(dataset):
             # print(parse_attributes_for_report(report))
             for key in report:
                 # print(report[key]['0'][1])
-                if(report[key]['0'][1]<50):
+                if(report and report[key] and report[key]['0'][1]<50):
                     counter=counter+1
                     break
     WOT_RANK=(float(counter)/len(dataset))*100

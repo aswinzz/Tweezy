@@ -56,7 +56,10 @@ def rank_similarity(dataset):
                             break
             if(hitinCluster):
                 break
-                
+            
+    if(total==0):
+        return 0
+        
     similarity_rank=(float(counter)/total)*10
     return similarity_rank
 

@@ -21,12 +21,16 @@ def url_ranking(urls,counter=0,total=0):
     if(len(urls)==0):
         return [counter,total]
     for url in urls:
-        if(bs4.BeautifulSoup(urlopen("http://data.alexa.com/data?cli=10&dat=s&url="+ url).read(), "xml").find("REACH")):
-            rank=bs4.BeautifulSoup(urlopen("http://data.alexa.com/data?cli=10&dat=s&url="+ url).read(), "xml").find("REACH")['RANK']
-            print("rank : "+str(rank))
-            if(int(rank)<200000):
-                counter=counter+1
-            total=total+1
+        try:
+            if(bs4.BeautifulSoup(urlopen("http://data.alexa.com/data?cli=10&dat=s&url="+ url).read(), "xml").find("REACH")):
+                rank=bs4.BeautifulSoup(urlopen("http://data.alexa.com/data?cli=10&dat=s&url="+ url).read(), "xml").find("REACH")['RANK']
+                print("rank : "+str(rank))
+                if(int(rank)<200000):
+                    counter=counter+1
+                total=total+1
+        except:
+            print("error in urls.py")
+
     return [counter,total]
 
 def rank_url(dataset):
