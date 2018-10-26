@@ -12,14 +12,18 @@ def rank_wot(dataset):
     for data in dataset:
         urls=fetch_url(data)
         for url in urls:
-            total=total+1
-            report = wot_reports_for_domains([url], KEY)
-            # print(parse_attributes_for_report(report))
-            for key in report:
-                # print(report[key]['0'][1])
-                if(report and report[key] and report[key]['0'][1]<50):
-                    counter=counter+1
-                    break
+            try:
+                report = wot_reports_for_domains([url], KEY)
+                total=total+1
+                # print(parse_attributes_for_report(report))
+                for key in report:
+                    # print(report[key]['0'][1])
+                    if(report and report[key] and report[key]['0'][1]<50):
+                        counter=counter+1
+                        break
+            except:
+                print("cannot check")
+                
     WOT_RANK=(float(counter)/len(dataset))*100
     if(WOT_RANK<5):
         return 0
