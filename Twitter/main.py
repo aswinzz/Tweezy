@@ -25,6 +25,11 @@ except:
     from Classifier import *
 import csv
 
+import math
+def truncate(number, digits) -> float:
+    stepper = pow(10.0, digits)
+    return math.trunc(stepper * number) / stepper
+
 
 KEY="d490ab2486ff4140b3ed73590b9908e1cbcf8933"
 
@@ -38,6 +43,16 @@ access_secret = "poYFeGPqAzTr7yF47geTVecSN6dYH1aeOuXdONEr8CeDk"
 
 #dataset = dataset.iloc[0:500,3].values
 #datasetWithTime = datasetWithTime.iloc[0:100,2].values
+
+def findAccuracy(cm,dimension):
+    tot=0
+    dia=0
+    for i in range(0,dimension[0]):
+        for j in range(0,dimension[0]):
+            tot += cm[i][j]
+            if(i==j):
+                dia += cm[i][j]
+    print("Accuracy : "+str((dia/tot)*100))
 
 # Function to extract tweets
 def get_tweets(username):
@@ -74,17 +89,11 @@ def get_tweets(username):
 def singleuser(username):
     [tweet_textList,tweet_timeList] = get_tweets(username)
     if(len(tweet_textList)!=0 and len(tweet_timeList)!=0):
-        a=0
-        b=0
-        c=0
-        d=0
-        e=0
-
-        a=rank_time(tweet_timeList)
-        b=rank_similarity(tweet_textList)
-        c=rank_url(tweet_textList)
-        d=rank_wot(tweet_textList)
-        e=checkAdultContent(tweet_textList)
+        a=truncate(rank_time(tweet_timeList),2)
+        b=truncate(rank_similarity(tweet_textList),2)
+        c=truncate(rank_url(tweet_textList),2)
+        d=truncate(rank_wot(tweet_textList),2)
+        e=truncate(checkAdultContent(tweet_textList),2)
 
         print("URL RANKING : ",c)
         print("SIMILARITY RANKING : ",b)
@@ -100,10 +109,10 @@ def singleuser(username):
             type=1
         if(FAL>5 and FAL<=10):
             type=2
-
+        FAL=truncate(FAL,2)
         return [a,b,c,d,e,FAL,type]
     else:
-        return ["empty"]
+        return [0,0,0,0,0,0,0]
 
 def analyser():
     dataset = pd.read_csv('Followers.csv')
@@ -151,22 +160,27 @@ def analyser():
     print("KNN Classification")
     print("==================")
     print(cm_knn)
+    findAccuracy(cm_knn,cm_knn.shape)
     print()
     print("Naive Bayes Classification")
     print("==========================")
     print(cm_nb)
+    findAccuracy(cm_nb,cm_nb.shape)
     print()
     print("Decistion Tree Classification")
     print("=============================")
     print(cm_dt)
+    findAccuracy(cm_dt,cm_dt.shape)
     print()
     print("Random Forest Classification")
     print("============================")
     print(cm_rf)
+    findAccuracy(cm_rf,cm_rf.shape)
     print()
     print("SVM Classification")
     print("==================")
     print(cm_svm)
+    findAccuracy(cm_svm,cm_svm.shape)
 
     return [cm_knn,cm_nb,cm_dt,cm_rf,cm_svm]
 
