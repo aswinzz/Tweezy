@@ -25,6 +25,11 @@ except:
     from Classifier import *
 import csv
 
+import math
+def truncate(number, digits) -> float:
+    stepper = pow(10.0, digits)
+    return math.trunc(stepper * number) / stepper
+
 
 KEY="d490ab2486ff4140b3ed73590b9908e1cbcf8933"
 
@@ -84,11 +89,11 @@ def get_tweets(username):
 def singleuser(username):
     [tweet_textList,tweet_timeList] = get_tweets(username)
     if(len(tweet_textList)!=0 and len(tweet_timeList)!=0):
-        a=rank_time(tweet_timeList)
-        b=rank_similarity(tweet_textList)
-        c=rank_url(tweet_textList)
-        d=rank_wot(tweet_textList)
-        e=checkAdultContent(tweet_textList)
+        a=truncate(rank_time(tweet_timeList),2)
+        b=truncate(rank_similarity(tweet_textList),2)
+        c=truncate(rank_url(tweet_textList),2)
+        d=truncate(rank_wot(tweet_textList),2)
+        e=truncate(checkAdultContent(tweet_textList),2)
 
         print("URL RANKING : ",c)
         print("SIMILARITY RANKING : ",b)
@@ -104,7 +109,7 @@ def singleuser(username):
             type=1
         if(FAL>5 and FAL<=10):
             type=2
-
+        FAL=truncate(FAL,2)
         return [a,b,c,d,e,FAL,type]
     else:
         return [0,0,0,0,0,0,0]
