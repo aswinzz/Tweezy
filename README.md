@@ -67,3 +67,8 @@ To do the classification follow these steps :-
 - store the dataset of usernames which needs to be classified in  `dataset_gen.csv`
 - run `python main.py`
 - output based on 5 classification algorithm will be displayed as the output
+
+# Screenshots
+
+![1](screenshots/2.png)
+![2](screenshots/1.png)
