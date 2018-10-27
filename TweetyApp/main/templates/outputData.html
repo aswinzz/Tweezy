@@ -1,0 +1,82 @@
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css'>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <style>
+        .box{
+            margin-top : 5%;
+            margin-right : 17%;
+            margin-left : 17%;
+            margin-bottom : 5%;
+        }
+        .box-heading{
+            color : rgb(47, 111, 239);
+            text-align : center;
+        }
+        .result{
+            margin-top : 20px;
+        }
+    </style>
+    
+    <title>Tweety App</title>
+</head>
+<body>
+
+    <section class="nav hero is-info" >
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  This is Tweety app
+                </h1>
+              </div>
+            </div>
+    </section>
+
+    <div class="box">
+        <h4 id="details" class="box-heading title is-3">Details</h4>
+        <article class="message is-link">
+            <div class="message-body">
+                <h1 class="title is-5">Username : {{ name }}</h1>
+            </div>
+        </article>
+        <article class="message is-info">
+            <div class="message-body">
+                <h1 class="title is-6">Url Rank : {{ urlRank }}</h1>
+            </div>
+            <div class="message-body">
+                <h1 class="title is-6">Similarity Rank : {{ similarity }}</h1>
+            </div>
+            <div class="message-body">
+                <h1 class="title is-6">WOT Rank : {{ wot }}</h1>
+            </div>
+            <div class="message-body">
+                <h1 class="title is-6">Adult Content Rank : {{ adult }}</h1>
+            </div>
+            <div class="message-body">
+                <h1 class="title is-6">Time Rank : {{ time }}</h1>
+            </div>       
+        </article>
+        <article class="message is-link">
+            <div class="result columns">
+                <div class="column">
+                <div class="message-body">
+                    <h1 class="title is-5">FAL Value : {{ fal }}</h1>
+                </div>
+                </div>
+                <div class="column">
+                <div class="message-body">
+                    <h1 class="title is-5">Type : {{ type }}</h1>
+                </div>
+                </div>
+            </div> 
+        </article>
+    </div>
+
+</body>
+</html>
