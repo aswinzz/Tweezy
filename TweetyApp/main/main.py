@@ -31,9 +31,6 @@ access_secret = "poYFeGPqAzTr7yF47geTVecSN6dYH1aeOuXdONEr8CeDk"
 #dataset = dataset.iloc[0:500,3].values
 #datasetWithTime = datasetWithTime.iloc[0:100,2].values
 
-print("***********************************")
-#print(dataset)
-print("***********************************")
 
 # Function to extract tweets
 def get_tweets(username):
