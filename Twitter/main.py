@@ -74,6 +74,12 @@ def get_tweets(username):
 def singleuser(username):
     [tweet_textList,tweet_timeList] = get_tweets(username)
     if(len(tweet_textList)!=0 and len(tweet_timeList)!=0):
+        a=0
+        b=0
+        c=0
+        d=0
+        e=0
+
         a=rank_time(tweet_timeList)
         b=rank_similarity(tweet_textList)
         c=rank_url(tweet_textList)
@@ -168,3 +174,4 @@ if __name__ == '__main__':
     # Here goes the twitter handle for the user
     # whose tweets are to be extracted.
     temp=analyser()
+    # temp=singleuser("aswinvb1")

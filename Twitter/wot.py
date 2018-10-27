@@ -6,27 +6,37 @@ try:
     from .url import fetch_url
 except:
     from url import fetch_url
-    
+
+import requests
+
 KEY="d490ab2486ff4140b3ed73590b9908e1cbcf8933"
 
 def rank_wot(dataset):
+    print("hi")
     counter=0
     total=0
     for data in dataset:
+        mal=False
         urls=fetch_url(data)
+        total=total+1
         for url in urls:
+            if mal:
+                break
             try:
+                r=requests.get(url)
+                url=r.url
                 report = wot_reports_for_domains([url], KEY)
-                total=total+1
+
                 # print(parse_attributes_for_report(report))
                 for key in report:
-                    # print(report[key]['0'][1])
-                    if(report and report[key] and report[key]['0'][1]<50):
+                    print(url," rank is ",report[key]['0'][1])
+                    if(report and report[key] and report[key]['0'][1]<40):
                         counter=counter+1
+                        mal=True
                         break
             except:
                 print("cannot check")
-
+    print(counter," ",len(dataset))
     WOT_RANK=(float(counter)/len(dataset))*100
     if(WOT_RANK<5):
         return 0

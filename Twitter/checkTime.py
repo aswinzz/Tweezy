@@ -9,15 +9,20 @@ try:
 	from .url import fetch_url
 except:
 	from url import fetch_url
-	
+
 def findTimeDiff(dataset,pos1,pos2):
 	t1 = str(dataset[pos1])
 	t2 = str(dataset[pos2])
 	t1 = t1.split(" ")
 	t2 = t2.split(" ")
+	print(t1)
+	print(t2)
+	print("----")
 	if(t1[0]==t2[0]):
 		t1 = t1[1].split(":")
 		t2 = t2[1].split(":")
+		# print("time difference",int(t1[0])*3600+int(t1[1])*60+int(t1[2]))-(int(t2[0])*3600+int(t2[1])*60+int(t2[2]))
+		print("----")
 		if((int(t1[0])*3600+int(t1[1])*60+int(t1[2]))-(int(t2[0])*3600+int(t2[1])*60+int(t2[2])) < 120):
 			return 1
 		else:
@@ -35,6 +40,6 @@ def rank_time(dataset):
 				hits = hits+1
 				break
 	cluster=len(dataset)-6
-
+	print(hits," of ",cluster," clusters are tweeted in similar timings")
 	rank = (float(hits)/cluster)*10
 	return rank
