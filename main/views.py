@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from .forms import DocumentForm
 from django.conf import settings
-from .main import singleuser
+from Twitter.main import singleuser
 
 # Create your views here.
 def main(request):
