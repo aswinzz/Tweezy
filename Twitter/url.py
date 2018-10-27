@@ -4,6 +4,7 @@ import pandas as pd
 import re, math
 from collections import Counter
 import urllib, sys, bs4
+import requests
 
 if sys.version_info[0] == 3:
     from urllib.request import urlopen
@@ -27,8 +28,8 @@ def fetch_url(text):
     for item in urls_check2:
         if item not in urls:
             urls.append(item)
-    
-    print(urls)
+
+    # print(urls)
     return urls
 
 def url_ranking(urls,counter=0,total=0):
@@ -36,6 +37,9 @@ def url_ranking(urls,counter=0,total=0):
         return [counter,total]
     for url in urls:
         try:
+            r=requests.get(url)
+            url=r.url
+            print(url)
             if(bs4.BeautifulSoup(urlopen("http://data.alexa.com/data?cli=10&dat=s&url="+ url).read(), "xml").find("REACH")):
                 rank=bs4.BeautifulSoup(urlopen("http://data.alexa.com/data?cli=10&dat=s&url="+ url).read(), "xml").find("REACH")['RANK']
                 print("rank : "+str(rank))

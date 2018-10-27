@@ -11,6 +11,7 @@ except:
 	from url import fetch_url
 import os
 dirpath = os.getcwd()+'/Twitter/'
+import requests
 
 class UrlExpand:
 	def __init__(self):
@@ -38,11 +39,17 @@ def checkAdultContent(dataset):
 	for data in dataset:
 		urls=fetch_url(data)
 		for url in urls:
-			print("checking url : "+url)
-			result = urlExpand.decodeURL(url)
-			if(result in adultContentDataset):
-				#returns 10, if adult content is present
-				return 10
+			try:
+				r=requests.get(url)
+				url=r.url
+				print("checking url : "+url)
+				result = urlExpand.decodeURL(url)
+				if(result in adultContentDataset):
+					#returns 10, if adult content is present
+					return 10
+			except:
+				print("Invalid url")
+
 
 	#returns 0, if adult content isn't present
 	return 0
