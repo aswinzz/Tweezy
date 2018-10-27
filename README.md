@@ -1,4 +1,7 @@
-# Twitter-Analysis
+# TWEEZY
+<img src="main/static/main/icon-left-font.png" width = "700" height= "200">
+<br>
+
 Classify Twitter users based on different parameters
 
 ## Basic Idea
