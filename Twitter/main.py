@@ -39,10 +39,6 @@ access_secret = "poYFeGPqAzTr7yF47geTVecSN6dYH1aeOuXdONEr8CeDk"
 #dataset = dataset.iloc[0:500,3].values
 #datasetWithTime = datasetWithTime.iloc[0:100,2].values
 
-print("***********************************")
-#print(dataset)
-print("***********************************")
-
 # Function to extract tweets
 def get_tweets(username):
     # Authorization to consumer key and consumer secret
@@ -146,10 +142,24 @@ def analyser():
     cm_dt=DecisionTree(dataset)
     cm_rf=RandomForest(dataset)
     cm_svm=SVM(dataset)
+    print("KNN Classification")
+    print("==================")
     print(cm_knn)
+    print()
+    print("Naive Bayes Classification")
+    print("==========================")
     print(cm_nb)
+    print()
+    print("Decistion Tree Classification")
+    print("=============================")
     print(cm_dt)
+    print()
+    print("Random Forest Classification")
+    print("============================")
     print(cm_rf)
+    print()
+    print("SVM Classification")
+    print("==================")
     print(cm_svm)
 
     return [cm_knn,cm_nb,cm_dt,cm_rf,cm_svm]

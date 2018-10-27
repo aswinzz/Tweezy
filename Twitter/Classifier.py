@@ -38,7 +38,7 @@ def KNN(dataset):
     from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    print(cm)
+    # print(cm)
     return cm
 
 def NaiveBayesClassifier(dataset):
@@ -68,7 +68,7 @@ def NaiveBayesClassifier(dataset):
     from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    print(cm)
+    # print(cm)
     return cm
 
 
@@ -99,7 +99,7 @@ def SVM(dataset):
     from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    print(cm)
+    # print(cm)
     return cm
 
 
@@ -131,7 +131,7 @@ def DecisionTree(dataset):
     from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    print(cm)
+    # print(cm)
     return cm
 
 
@@ -163,7 +163,7 @@ def RandomForest(dataset):
     from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    print(cm)
+    # print(cm)
     return cm
 
 dataset=None
