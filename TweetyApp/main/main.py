@@ -82,13 +82,13 @@ def singleuser(username):
         print("ADULT CONTENT : ",e)
         print("TIME RANKING : ",a)
 
-        FAL=0
+        FAL=10
         if(e!=10):
             FAL=a*0.15+b*0.25+c*0.3+d*0.3
         type=0
-        if(FAL>=4 and FAL<=5):
+        if(FAL>=4 and FAL<=7):
             type=1
-        if(FAL>5 and FAL<=10):
+        if(FAL>7 and FAL<=10):
             type=2
 
         return [a,b,c,d,e,FAL,type]

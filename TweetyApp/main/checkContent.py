@@ -6,6 +6,7 @@ from collections import Counter
 import urllib, sys, bs4
 from pyshorteners import Shortener
 from .url import fetch_url
+import requests
 
 class UrlExpand:
 	def __init__(self):
@@ -17,7 +18,7 @@ class UrlExpand:
 		except Exception as e:
 			return url
 
-adultContentDataset = pd.read_csv('./main/adultcontenturl.csv')
+adultContentDataset = pd.read_csv('./media/documents/adultcontenturl.csv')
 adultContentDataset = adultContentDataset.iloc[0:3,0].values
 
 def checkAdultContent(dataset):
@@ -27,13 +28,20 @@ def checkAdultContent(dataset):
 	if(len(dataset) == 0):
 		return 0
 	for data in dataset:
+
 		urls=fetch_url(data)
 		for url in urls:
-			print("checking url : "+url)
-			result = urlExpand.decodeURL(url)
-			if(result in adultContentDataset):
-				#returns 10, if adult content is present
-				return 10
+			try:
+				r=requests.get(url)
+				url=r.url
+				print("checking url : "+url)
+				result = urlExpand.decodeURL(url)
+				if(result in adultContentDataset):
+					print("adult : "+str(result))
+					#returns 10, if adult content is present
+					return 10
+			except:
+				print("Invalid url")
 
-	#returns 0, if adult content isn't present	
+	#returns 0, if adult content isn't present
 	return 0
