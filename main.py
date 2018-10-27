@@ -49,7 +49,6 @@ def get_tweets(username):
 
         number_of_tweets=50
         tweets = api.user_timeline(screen_name=username,count=number_of_tweets)
-
         tweet_textList=[]
         tweet_timeList=[]
 
@@ -74,7 +73,7 @@ def singleuser(username):
         a=rank_time(tweet_timeList)
         b=rank_similarity(tweet_textList)
         c=rank_url(tweet_textList)
-        d=rank_wot(tweet_textList)
+        d=rank_wot(tweet_textList)    
         e=checkAdultContent(tweet_textList)
 
         print("URL RANKING : ",c)
