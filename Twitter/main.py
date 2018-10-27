@@ -39,6 +39,16 @@ access_secret = "poYFeGPqAzTr7yF47geTVecSN6dYH1aeOuXdONEr8CeDk"
 #dataset = dataset.iloc[0:500,3].values
 #datasetWithTime = datasetWithTime.iloc[0:100,2].values
 
+def findAccuracy(cm,dimension):
+    tot=0
+    dia=0
+    for i in range(0,dimension[0]):
+        for j in range(0,dimension[0]):
+            tot += cm[i][j]
+            if(i==j):
+                dia += cm[i][j]
+    print("Accuracy : "+str((dia/tot)*100))
+
 # Function to extract tweets
 def get_tweets(username):
     # Authorization to consumer key and consumer secret
@@ -145,22 +155,27 @@ def analyser():
     print("KNN Classification")
     print("==================")
     print(cm_knn)
+    findAccuracy(cm_knn,cm_knn.shape)
     print()
     print("Naive Bayes Classification")
     print("==========================")
     print(cm_nb)
+    findAccuracy(cm_nb,cm_nb.shape)
     print()
     print("Decistion Tree Classification")
     print("=============================")
     print(cm_dt)
+    findAccuracy(cm_dt,cm_dt.shape)
     print()
     print("Random Forest Classification")
     print("============================")
     print(cm_rf)
+    findAccuracy(cm_rf,cm_rf.shape)
     print()
     print("SVM Classification")
     print("==================")
     print(cm_svm)
+    findAccuracy(cm_svm,cm_svm.shape)
 
     return [cm_knn,cm_nb,cm_dt,cm_rf,cm_svm]
 
