@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+
+font name: LeagueMono-Medium
+font link: https://www.tylerfinck.com/shop/league-mono/
+font author: Tyler Finck
+font author site: https://www.tylerfinck.com/
+
+icon designer: Sara Novovitch
+icon designer link: /saranovovitch
+        
+{"bg":"#ffffff","icon-gradient-0":"#006678","icon-gradient-1":"#4FA8FF","font":"#000000"}
+      

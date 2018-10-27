@@ -9,14 +9,22 @@ from collections import Counter
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from url import rank_url,fetch_url
-from similarity import rank_similarity
-from wot import *
-from checkContent import checkAdultContent
-from checkTime import rank_time
-
+try:
+    from .url import rank_url,fetch_url
+    from .similarity import rank_similarity
+    from .wot import *
+    from .checkContent import checkAdultContent
+    from .checkTime import rank_time
+    from .Classifier import *
+except:
+    from url import rank_url,fetch_url
+    from similarity import rank_similarity
+    from wot import *
+    from checkContent import checkAdultContent
+    from checkTime import rank_time
+    from Classifier import *
 import csv
-from Classifier import *
+
 
 KEY="d490ab2486ff4140b3ed73590b9908e1cbcf8933"
 
@@ -73,7 +81,7 @@ def singleuser(username):
         a=rank_time(tweet_timeList)
         b=rank_similarity(tweet_textList)
         c=rank_url(tweet_textList)
-        d=rank_wot(tweet_textList)    
+        d=rank_wot(tweet_textList)
         e=checkAdultContent(tweet_textList)
 
         print("URL RANKING : ",c)
@@ -94,7 +102,7 @@ def singleuser(username):
         return [a,b,c,d,e,FAL,type]
     else:
         return ["empty"]
-        
+
 def analyser():
     dataset = pd.read_csv('Followers.csv')
     usernames = dataset.iloc[1:, [0]].values

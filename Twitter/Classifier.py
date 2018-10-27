@@ -7,6 +7,8 @@ from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import os
+dirpath = os.getcwd()+'/Twitter/'
 
 def KNN(dataset):
     # Importing the dataset
@@ -164,7 +166,11 @@ def RandomForest(dataset):
     print(cm)
     return cm
 
-dataset = pd.read_csv('dataset_gen.csv')
+dataset=None
+try:
+    dataset = pd.read_csv(dirpath+'dataset_gen.csv')
+except:
+    dataset = pd.read_csv('dataset_gen.csv')
 cm=KNN(dataset)
 cm=NaiveBayesClassifier(dataset)
 cm=DecisionTree(dataset)

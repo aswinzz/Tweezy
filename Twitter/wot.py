@@ -2,8 +2,11 @@ import collections
 import json
 import urllib
 from concurrent.futures import ThreadPoolExecutor
-from url import fetch_url
-
+try:
+    from .url import fetch_url
+except:
+    from url import fetch_url
+    
 KEY="d490ab2486ff4140b3ed73590b9908e1cbcf8933"
 
 def rank_wot(dataset):
@@ -23,7 +26,7 @@ def rank_wot(dataset):
                         break
             except:
                 print("cannot check")
-                
+
     WOT_RANK=(float(counter)/len(dataset))*100
     if(WOT_RANK<5):
         return 0

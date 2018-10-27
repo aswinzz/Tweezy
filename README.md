@@ -38,6 +38,7 @@ Weights of each parameter are :
 - Decision Tree
 
 ## Structure
+* Files related to algorithm used is present in Twitter folder
 * Main.py is the root file to be run from which other functions are called
 * dataset_generator.py generates dummy data of values a,b,c,d,e,FAL,type into dataset_gen.csv 
 * Classifier.py takes in the data present in the dataset_gen.csv and classify the users based on different Classification Algorithm
@@ -46,3 +47,20 @@ Weights of each parameter are :
 * url.py is used to calculate Alexa rank of url's present in the tweets
 * checkTime.py is used to calculate time difference of tweets
 * checkContent.py is used to check for adult contents in tweets
+
+## How to run ?
+To check whether a particular user is anomalous :-
+- clone this repo
+- run the following commands in the terminal from the cloned folder
+- `virtualenv venv`
+- `source venv/bin/activate`
+- `pip install -r requirements.txt`
+- `python manage.py migrate`
+- `python manage.py runserver`
+- open `localhost:8000.main` in your browser
+
+To do the classification follow these steps :-
+- open Twitter folder in terminal
+- store the dataset of usernames which needs to be classified in  `dataset_gen.csv`
+- run `python main.py`
+- output based on 5 classification algorithm will be displayed as the output

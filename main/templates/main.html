@@ -1,3 +1,4 @@
+{% load static %}
 {% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
@@ -19,17 +20,17 @@
         }
     </style>
     
-    <title>Tweety App</title>
+    <title>Tweezy</title>
 </head>
 <body>
     {% comment %} <h1>
-        This is Tweety app
+        Tweezy
     </h1> {% endcomment %}
     <section class="nav hero is-info" >
             <div class="hero-body">
               <div class="container">
-                <h1 class="title">
-                  This is Tweety app
+                <h1 class="title is-1">
+                  TWEEZY
                 </h1>
               </div>
             </div>
@@ -41,11 +42,10 @@
     {{form.as_p}}
     <button type="submit">Submit</button>
     </form> {% endcomment %}
-
     <div class="username">
         <center>
         <div class="logo">
-            <img src="https://seeklogo.com/images/T/twitter-logo-C591CF37A1-seeklogo.com.png" alt="logo" width="220" height="228">
+            <img src="{% static "main/logo.png" %}" alt="logo" width="220" height="228">
         </div>
         
         <form method="post" enctype="multipart/form-data">

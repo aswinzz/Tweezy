@@ -31,9 +31,6 @@ access_secret = "poYFeGPqAzTr7yF47geTVecSN6dYH1aeOuXdONEr8CeDk"
 #dataset = dataset.iloc[0:500,3].values
 #datasetWithTime = datasetWithTime.iloc[0:100,2].values
 
-print("***********************************")
-#print(dataset)
-print("***********************************")
 
 # Function to extract tweets
 def get_tweets(username):
@@ -82,18 +79,18 @@ def singleuser(username):
         print("ADULT CONTENT : ",e)
         print("TIME RANKING : ",a)
 
-        FAL=0
+        FAL=10
         if(e!=10):
             FAL=a*0.15+b*0.25+c*0.3+d*0.3
         type=0
-        if(FAL>=4 and FAL<=5):
+        if(FAL>=4 and FAL<=7):
             type=1
-        if(FAL>5 and FAL<=10):
+        if(FAL>7 and FAL<=10):
             type=2
 
         return [a,b,c,d,e,FAL,type]
     else:
-        return ["empty"]
+        return [0,0,0,0,0,0,0]
         
 def analyser():
     dataset = pd.read_csv('Followers.csv')

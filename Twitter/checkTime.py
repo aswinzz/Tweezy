@@ -5,8 +5,11 @@ import re, math
 from collections import Counter
 import urllib, sys, bs4
 from pyshorteners import Shortener
-from .url import fetch_url
-
+try:
+	from .url import fetch_url
+except:
+	from url import fetch_url
+	
 def findTimeDiff(dataset,pos1,pos2):
 	t1 = str(dataset[pos1])
 	t2 = str(dataset[pos2])
@@ -35,8 +38,3 @@ def rank_time(dataset):
 
 	rank = (float(hits)/cluster)*10
 	return rank
-
-
-
-
-
