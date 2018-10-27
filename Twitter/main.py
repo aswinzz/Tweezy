@@ -97,7 +97,7 @@ def singleuser(username):
 
         return [a,b,c,d,e,FAL,type]
     else:
-        return ["empty"]
+        return [0,0,0,0,0,0,0]
 
 def analyser():
     dataset = pd.read_csv('Followers.csv')
