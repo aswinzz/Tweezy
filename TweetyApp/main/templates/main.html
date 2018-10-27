@@ -1,20 +1,69 @@
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css'>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <style>
+        .username{
+            margin-top : 20px;
+        }
+        .namearea{
+            margin-left : 20%;
+            margin-right : 20%;
+            margin-top : 20px;
+        }
+    </style>
+    
     <title>Tweety App</title>
 </head>
 <body>
-    <h1>
+    {% comment %} <h1>
         This is Tweety app
-    </h1>
-    <h2>Enter username</h2> 
+    </h1> {% endcomment %}
+    <section class="nav hero is-info" >
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  This is Tweety app
+                </h1>
+              </div>
+            </div>
+    </section>
+
+    {% comment %} <h2>Enter username</h2> 
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
     {{form.as_p}}
     <button type="submit">Submit</button>
-    </form>
+    </form> {% endcomment %}
+
+    <div class="username">
+        <center>
+        <div class="logo">
+            <img src="https://seeklogo.com/images/T/twitter-logo-C591CF37A1-seeklogo.com.png" alt="logo" width="220" height="228">
+        </div>
+        
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="namearea control has-icons-left has-icons-right">
+            {% render_field form.username class="input is-info" type="text" placeholder="Username" %}
+            <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+            </span>
+            <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+            </span>
+            <p class="help is-link">Input twitter username</p>
+        </div>
+        <button class="button submit-button is-medium is-info is-focused" type="submit">Submit</button>
+        </form>
+        
+        </center>
+    </div>
 </body>
 </html>
