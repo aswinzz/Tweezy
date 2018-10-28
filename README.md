@@ -22,7 +22,7 @@ Weights of each parameter are :
 - Malware URL: 0.30
 - Adult Content: 1
 
-### An FAL value is assigned combining all these parameters which is given by 
+### An FAL value is assigned combining all these parameters which is given by
 ![](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8123903/8203898/8204141/8204141-alg-1-source-small.gif)
 
 ### Depending upon the FAL value , a user can be classified into Anomalous, Non Anomalous and Intermediate
@@ -43,7 +43,7 @@ Weights of each parameter are :
 ## Structure
 * Files related to algorithm used is present in Twitter folder
 * Main.py is the root file to be run from which other functions are called
-* dataset_generator.py generates dummy data of values a,b,c,d,e,FAL,type into dataset_gen.csv 
+* dataset_generator.py generates dummy data of values a,b,c,d,e,FAL,type into dataset_gen.csv
 * Classifier.py takes in the data present in the dataset_gen.csv and classify the users based on different Classification Algorithm
 * wot.py is used to calculate Web Of Trust Rank
 * similarity.py is used to calculate similarity of tweets
@@ -70,5 +70,6 @@ To do the classification follow these steps :-
 
 # Screenshots
 
-![1](screenshots/2.png)
-![2](screenshots/1.png)
+![1](screenshots/3.png)
+![2](screenshots/4.png)
+![3](screenshots/5.png)
