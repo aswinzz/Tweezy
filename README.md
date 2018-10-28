@@ -60,7 +60,7 @@ To check whether a particular user is anomalous :-
 - `pip install -r requirements.txt`
 - `python manage.py migrate`
 - `python manage.py runserver`
-- open `localhost:8000.main` in your browser
+- open `localhost:8000/main` in your browser
 
 To do the classification follow these steps :-
 - open Twitter folder in terminal
