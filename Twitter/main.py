@@ -84,10 +84,13 @@ def get_tweets(username):
         return tweet_textList,tweet_timeList
     except:
         print("Error")
-        return [],[]
+        return ["TEMP"],[-1]
 
 def singleuser(username):
     [tweet_textList,tweet_timeList] = get_tweets(username)
+    if(tweet_timeList):
+        if(tweet_timeList[0] == -1):
+            return [0,0,0,0,0,0,-1]
     if(len(tweet_textList)!=0 and len(tweet_timeList)!=0):
         a=truncate(rank_time(tweet_timeList),2)
         b=truncate(rank_similarity(tweet_textList),2)
