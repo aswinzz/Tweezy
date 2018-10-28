@@ -42,6 +42,8 @@ def checkAdultContent(dataset):
 			try:
 				r=requests.get(url)
 				url=r.url
+				if(url=="https://t.co/"):
+					continue
 				print("checking url : "+url)
 				result = urlExpand.decodeURL(url)
 				if(result in adultContentDataset):

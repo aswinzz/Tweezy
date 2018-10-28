@@ -8,21 +8,25 @@ import urllib, sys, bs4
 from collections import Counter
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import datetime
 
 try:
-    from .url import rank_url,fetch_url
-    from .similarity import rank_similarity
-    from .wot import *
-    from .checkContent import checkAdultContent
-    from .checkTime import rank_time
-    from .Classifier import *
-except:
     from url import rank_url,fetch_url
     from similarity import rank_similarity
     from wot import *
     from checkContent import checkAdultContent
     from checkTime import rank_time
     from Classifier import *
+    from combined import rank_url_adult_wot
+
+except:
+    from .url import rank_url,fetch_url
+    from .similarity import rank_similarity
+    from .wot import *
+    from .checkContent import checkAdultContent
+    from .checkTime import rank_time
+    from .Classifier import *
+    from .combined import rank_url_adult_wot
 import csv
 
 
@@ -39,6 +43,17 @@ access_secret = "poYFeGPqAzTr7yF47geTVecSN6dYH1aeOuXdONEr8CeDk"
 #dataset = dataset.iloc[0:500,3].values
 #datasetWithTime = datasetWithTime.iloc[0:100,2].values
 
+
+def findAccuracy(cm,dimension):
+    tot=0
+    dia=0
+    for i in range(0,dimension[0]):
+        for j in range(0,dimension[0]):
+            tot += cm[i][j]
+            if(i==j):
+                dia += cm[i][j]
+    print("Accuracy : "+str((dia/tot)*100))
+
 # Function to extract tweets
 def get_tweets(username):
     # Authorization to consumer key and consumer secret
@@ -51,7 +66,7 @@ def get_tweets(username):
         # Calling api
         api = tweepy.API(auth)
 
-        number_of_tweets=200
+        number_of_tweets=50
         tweets = api.user_timeline(screen_name=username,count=number_of_tweets)
         tweet_textList=[]
         tweet_timeList=[]
@@ -69,13 +84,10 @@ def get_tweets(username):
         return tweet_textList,tweet_timeList
     except:
         print("Error")
-        return ["TEMP"],[-1]
+        return [],[]
 
 def singleuser(username):
     [tweet_textList,tweet_timeList] = get_tweets(username)
-    if(tweet_timeList):
-        if(tweet_timeList[0] == -1):
-            return [0,0,0,0,0,0,-1]
     if(len(tweet_textList)!=0 and len(tweet_timeList)!=0):
         a=0
         b=0
@@ -85,9 +97,10 @@ def singleuser(username):
 
         a=rank_time(tweet_timeList)
         b=rank_similarity(tweet_textList)
-        c=rank_url(tweet_textList)
-        d=rank_wot(tweet_textList)
-        e=checkAdultContent(tweet_textList)
+        # c=rank_url(tweet_textList)
+        # d=rank_wot(tweet_textList)
+        # e=checkAdultContent(tweet_textList)
+        [c,e,d]=rank_url_adult_wot(tweet_textList)
 
         print("URL RANKING : ",c)
         print("SIMILARITY RANKING : ",b)
@@ -118,9 +131,10 @@ def analyser():
         if(len(tweet_textList)!=0 and len(tweet_timeList)!=0):
             a=rank_time(tweet_timeList)
             b=rank_similarity(tweet_textList)
-            c=rank_url(tweet_textList)
-            d=rank_wot(tweet_textList)
-            e=checkAdultContent(tweet_textList)
+            # c=rank_url(tweet_textList)
+            # d=rank_wot(tweet_textList)
+            # e=checkAdultContent(tweet_textList)
+            [c,e,d]=rank_url_adult_wot(tweet_textList)
 
             print("URL RANKING : ",c)
             print("SIMILARITY RANKING : ",b)
@@ -154,23 +168,30 @@ def analyser():
     print("KNN Classification")
     print("==================")
     print(cm_knn)
+    findAccuracy(cm_knn,cm_knn.shape)
     print()
     print("Naive Bayes Classification")
     print("==========================")
     print(cm_nb)
+    findAccuracy(cm_nb,cm_nb.shape)
     print()
     print("Decistion Tree Classification")
     print("=============================")
     print(cm_dt)
+    findAccuracy(cm_dt,cm_dt.shape)
     print()
     print("Random Forest Classification")
     print("============================")
     print(cm_rf)
+    findAccuracy(cm_knn,cm_knn.shape)
     print()
     print("SVM Classification")
     print("==================")
     print(cm_svm)
-
+    findAccuracy(cm_svm,cm_svm.shape)
+    print()
+    print("Completed")
+    print(datetime.datetime.now())
     return [cm_knn,cm_nb,cm_dt,cm_rf,cm_svm]
 
 if __name__ == '__main__':

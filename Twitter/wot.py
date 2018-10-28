@@ -12,7 +12,6 @@ import requests
 KEY="d490ab2486ff4140b3ed73590b9908e1cbcf8933"
 
 def rank_wot(dataset):
-    print("hi")
     counter=0
     total=0
     for data in dataset:
@@ -25,6 +24,8 @@ def rank_wot(dataset):
             try:
                 r=requests.get(url)
                 url=r.url
+                # if(url=="https://t.co/"):
+                #     continue
                 report = wot_reports_for_domains([url], KEY)
 
                 # print(parse_attributes_for_report(report))
