@@ -11,14 +11,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 import datetime
 
 try:
-    from .url import rank_url,fetch_url
-    from .similarity import rank_similarity
-    from .wot import *
-    from .checkContent import checkAdultContent
-    from .checkTime import rank_time
-    from .Classifier import *
-    from .combined import rank_url_adult_wot
-except:
     from url import rank_url,fetch_url
     from similarity import rank_similarity
     from wot import *
@@ -26,6 +18,15 @@ except:
     from checkTime import rank_time
     from Classifier import *
     from combined import rank_url_adult_wot
+except:
+    from .url import rank_url,fetch_url
+    from .similarity import rank_similarity
+    from .wot import *
+    from .checkContent import checkAdultContent
+    from .checkTime import rank_time
+    from .Classifier import *
+    from .combined import rank_url_adult_wot
+
 import csv
 import math
 
