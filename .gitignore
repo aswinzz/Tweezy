@@ -3,6 +3,9 @@
 
 venv/
 
+Twitter5/
+Twitter5
+
 __pycache__/
 
 ./db.sqlite3

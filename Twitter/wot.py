@@ -24,8 +24,6 @@ def rank_wot(dataset):
             try:
                 r=requests.get(url)
                 url=r.url
-                # if(url=="https://t.co/"):
-                #     continue
                 report = wot_reports_for_domains([url], KEY)
 
                 # print(parse_attributes_for_report(report))

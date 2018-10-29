@@ -71,7 +71,7 @@ def ranking(urls,counter=0,total=0,mal=False,counter_wot=0,total_wot=0):
         adultContentDataset = pd.read_csv('adultcontenturl.csv')
     adultContentDataset = adultContentDataset.iloc[0:3,0].values
     urlExpand = UrlExpand()
-    
+
     adult=0
     if(len(urls)==0):
         return [counter,total,adult,mal,counter_wot,total_wot]
@@ -106,7 +106,6 @@ def ranking(urls,counter=0,total=0,mal=False,counter_wot=0,total_wot=0):
                 print("alexa rank : 10")
                 total=total+1
             elif(url!="https://t.co/"):
-                print("helllllll")
                 if(bs4.BeautifulSoup(urlopen("http://data.alexa.com/data?cli=10&dat=s&url="+ url).read(), "xml").find("REACH")):
                     rank=bs4.BeautifulSoup(urlopen("http://data.alexa.com/data?cli=10&dat=s&url="+ url).read(), "xml").find("REACH")['RANK']
                     print("alexa rank : "+str(rank))
