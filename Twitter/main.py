@@ -142,13 +142,15 @@ def singleuser(username):
     else:
         return ["empty"]
 
-def analyser(need_fetch):
+def analyser(need_fetch,size=0):
     start=datetime.datetime.now()
     dataset = pd.read_csv('Followers.csv')
     usernames = dataset.iloc[1:, [0]].values
     lines=[]
     if(need_fetch):
-        for username in usernames:
+        for l in range(0,size):
+            username=usernames[l]
+        # for username in usernames:
             print(username[0])
             [tweet_textList,tweet_timeList] = get_tweets(username[0])
             if(len(tweet_textList)!=0 and len(tweet_timeList)!=0):
@@ -239,14 +241,17 @@ if __name__ == '__main__':
     elif(type=="2"):
         x="A"
         fetch_val=False
+        size=0
         while(True):
             print("Do you need to create the dataset of a,b,c,d,e values (Y/N) or just use the prebuilt dataset")
             x=input()
             if(x=="Y"):
+                print("How much usernames to be used ? (0-500)")
+                size=int(input())
                 fetch_val=True
                 break
             elif(x=="N"):
                 break
             else:
                 print("Invalid Input , Enter Y or N")
-        temp=analyser(fetch_val)
+        temp=analyser(fetch_val,size)

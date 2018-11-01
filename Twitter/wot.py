@@ -37,7 +37,7 @@ def rank_wot(dataset):
                 print("cannot check")
     print(counter," ",len(dataset))
     WOT_RANK=(float(counter)/len(dataset))*100
-    if(WOT_RANK<5):
+    if(WOT_RANK<10):
         return 0
     return 10
 

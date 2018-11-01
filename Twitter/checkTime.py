@@ -23,7 +23,7 @@ def findTimeDiff(dataset,pos1,pos2):
 		t2 = t2[1].split(":")
 		# print("time difference",int(t1[0])*3600+int(t1[1])*60+int(t1[2]))-(int(t2[0])*3600+int(t2[1])*60+int(t2[2]))
 		print("----")
-		if((int(t1[0])*3600+int(t1[1])*60+int(t1[2]))-(int(t2[0])*3600+int(t2[1])*60+int(t2[2])) < 120):
+		if((int(t1[0])*3600+int(t1[1])*60+int(t1[2]))-(int(t2[0])*3600+int(t2[1])*60+int(t2[2])) < 180):
 			return 1
 		else:
 			return 0
