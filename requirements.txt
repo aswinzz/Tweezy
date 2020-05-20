@@ -6,7 +6,7 @@ chardet==3.0.4
 cycler==0.10.0
 Django==2.1.2
 django-widget-tweaks==1.4.3
-httplib2==0.9.2
+httplib2==0.18.0
 idna==2.7
 keyring==10.6.0
 keyrings.alt==3.0
